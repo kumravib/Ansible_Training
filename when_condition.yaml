@@ -1,0 +1,9 @@
+---
+- hosts: all
+  remote_user: ansadm
+  become: yes
+  gather_facts: yes
+  tasks:
+  - name: install apache
+    command: apt install -y apache2
+    when: ansible_os_family == "Debian"

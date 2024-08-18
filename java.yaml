@@ -1,0 +1,13 @@
+---
+- hosts: all
+  user: ansadm
+  become: yes
+  gather_facts: yes
+  tasks:
+  - name: Update APT package manager repositories cache
+    apt:
+      update_cache: yes
+  - name: Install Java using Ansible
+    apt:
+      name: openjdk-17-jre 
+      state: present 
