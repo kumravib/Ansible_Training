@@ -1,0 +1,31 @@
+#To Install nginx package through Ansible
+
+ansible all -m apt -a "name=nginx state=present" -b
+
+#To Verify it being on the Control node (or) Can also Verify on the Managed node
+
+ansible all -m command -a "dpkg -l | grep nginx"
+
+#To Uninstall the nginx package
+
+ansible all -m apt -a "name=nginx state=present" -b
+
+ansible-inventory --list  # to display information about your inventory
+
+ansible all -m copy -a "src=index.html dest=/var/www/html/index.html" -b
+
+ansible all -m command -a "systemctl restart nginx" -b
+
+#Try Accessing website with the IP of Managed node after enabling port 80 on security group
+
+ansible all -m apt -a "name=git state=absent" -b
+
+ansible all -m apt -a "name=git state=present" -b
+
+#Update APT Package Index
+
+ansible all -m apt -a "update_cache=yes" -b      #   ( or ) Same as apt update -y
+
+ansible all -m apt -a "name=tree state=present" -b
+
+
