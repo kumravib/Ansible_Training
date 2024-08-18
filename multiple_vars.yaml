@@ -1,0 +1,24 @@
+---
+- hosts: all
+  remote_user: ansadm
+  become: yes
+  gather_facts: yes
+  vars:
+    package: nginx
+    temp: /tmp
+  tasks:
+  - name: ensure nginx is at the latest version
+    apt:
+      name: '{{ package }}'
+      state: latest
+  - name: start nginx
+    service:
+      name: '{{ package }}'
+      state: started
+  - name: create a file in /tmp dir
+    file:
+      path: '{{ temp }}/testfile'
+      state: touch
+      owner: ansadm
+      group: ansadm
+      mode: '755'

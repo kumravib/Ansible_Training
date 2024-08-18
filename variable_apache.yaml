@@ -1,0 +1,18 @@
+---
+- hosts: all
+  remote_user: ansadm
+  become: yes
+  gather_facts: yes
+  vars:
+    package: apache2
+  tasks:
+  - name: ensure apche2 is at the latest version
+    apt:
+      name: '{{ package }}'
+      state: absent 
+    ignore_errors: yes     
+  - name: start apche2
+    service:
+      name: '{{ package }}' 
+      state: started
+    ignore_errors: yes    

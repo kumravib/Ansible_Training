@@ -1,0 +1,16 @@
+---
+- hosts: all
+  remote_user: ansadm
+  become: yes
+  gather_facts: yes
+  tasks:
+  - name: nginx service stopping
+    ansible.builtin.service:
+      name: nginx
+      state: stopped
+  - debug:
+      msg: "this is to find the nginx version"
+  - name: start nginx
+    ansible.builtin.service:
+      name: nginx
+      state: started

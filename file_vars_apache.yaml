@@ -1,0 +1,23 @@
+---
+- hosts: all
+  remote_user: ansadm
+  become: yes
+  gather_facts: yes
+  vars_files:
+  - myvars.yaml
+  tasks:
+  - name: ensure apche2 is at the latest version
+    apt:
+      name: '{{ package }}'
+      state: latest 
+    ignore_errors: yes     
+  - name: start apche2
+    service:
+      name: '{{ package }}' 
+      state: started
+    ignore_errors: yes    
+
+  - name: Creation of file
+    file:
+      name: '{{ target_dir }}/abc'
+      state: touch

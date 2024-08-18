@@ -1,0 +1,16 @@
+---
+- hosts: all
+  user: ansadm
+  become: yes
+  gather_facts: yes
+  tasks:
+   - name: create multiple users
+     user:
+       name: "{{ item }}"
+       state: absent 
+     with_items:
+     - user1
+     - user2
+     - user3
+     - user4
+     - user5
