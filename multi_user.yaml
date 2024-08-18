@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  user: ansadm
+  remote_user: ansadm
   become: yes
   gather_facts: yes
   tasks:
