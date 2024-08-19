@@ -1,0 +1,23 @@
+---
+- hosts: all 
+  become: yes
+  remote_user: ansadm
+  tasks:
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+      notify: restart nginx
+
+    - name: Update nginx configuration file
+      copy:
+        src: index.html 
+        dest: /var/www/html/index.conf
+      notify: restart nginx
+
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
+

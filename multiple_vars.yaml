@@ -17,7 +17,7 @@
       state: started
   - name: create a file in /tmp dir
     file:
-      path: '{{ temp }}/testfile'
+      path: '{{ temp }}/testfile1'
       state: touch
       owner: ansadm
       group: ansadm
