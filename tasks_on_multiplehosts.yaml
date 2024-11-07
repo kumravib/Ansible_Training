@@ -1,0 +1,30 @@
+---
+# Playbook with multiple plays for different host groups
+
+# First play - tasks for web servers
+- name: Configure Web Servers
+  hosts: web_servers   # Target the web_servers group
+  tasks:
+    - name: Install NGINX
+      ansible.builtin.yum:
+        name: nginx
+        state: present
+
+    - name: Start NGINX service
+      ansible.builtin.service:
+        name: nginx
+        state: started
+
+# Second play - tasks for database servers
+- name: Configure Database Servers
+  hosts: db_servers    # Target the db_servers group
+  tasks:
+    - name: Install MySQL
+      ansible.builtin.yum:
+        name: mysql-server
+        state: present
+
+    - name: Start MySQL service
+      ansible.builtin.service:
+        name: mysqld
+        state: started
